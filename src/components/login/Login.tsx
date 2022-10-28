@@ -50,7 +50,7 @@ function Login(props: ILoginProps) {
                 });
 
                 if (response.status == 200) {
-                    props.setCurrentUser(await response.json());
+                    props.setCurrentUser( await response.json());
                 } else {
                     setErrorMessage('Could not validate the provided credentials');
                 }
