@@ -10,18 +10,19 @@ import Register from './components/register/Register';
 import Userdash from './components/userdash/Userdash';
 
 function App() {
-  
+
   const [authUser, setAuthUser] = useState<User>(); // generic to define type for state
 
   return (
     <BrowserRouter>
-        <Navbar currentUser={authUser} setCurrentUser={setAuthUser} />
-        <Routes>
-          <Route path="/login" element={<Login currentUser={authUser} setCurrentUser={setAuthUser}/>}/>
-          <Route path="/dashboard" element={<Dashboard currentUser={authUser} />}/>
-          <Route path="/register" element={<Register currentUser={authUser} />}/>
-          <Route path="/userdash" element={<Userdash currentUser={authUser} />}/>
-        </Routes>
+      <Navbar currentUser={authUser} setCurrentUser={setAuthUser} />
+      <Routes>
+        <Route path="/" element={<Login currentUser={authUser} setCurrentUser={setAuthUser} />} />
+        <Route path="/login" element={<Login currentUser={authUser} setCurrentUser={setAuthUser} />} />
+        <Route path="/dashboard" element={<Dashboard currentUser={authUser} />} />
+        <Route path="/register" element={<Register currentUser={authUser} />} />
+        <Route path="/userdash" element={<Userdash currentUser={authUser} />} />
+      </Routes>
     </BrowserRouter>
   );
 }

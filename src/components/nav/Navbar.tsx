@@ -1,6 +1,7 @@
 import { AppBar, Box, Button, IconButton, Toolbar, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { User } from "../../models/user";
+import './Navbar.css';
 
 interface INavbarProps {
     currentUser: User | undefined;
@@ -29,16 +30,18 @@ function Navbar(props: INavbarProps) {
                     >
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        News
+                        <Link className="link" color="inherit" to="/dashboard">
+                            Task App
+                        </Link>
                     </Typography>
                     {
                         props.currentUser ?
                             <>
+                                <Button color="inherit"><Link className="link" color="inherit" to="/tasks">Tasks</Link></Button>
                                 {
                                     props.currentUser.role == 'ADMIN' ?
                                         <>
-                                            <Button color="inherit"><Link style={{ textDecoration: 'none', color: 'white' }} color="inherit" to="/userdash">Users</Link></Button>
-                                            <Button color="inherit"><Link style={{ textDecoration: 'none', color: 'white' }} color="inherit" to="/dashboard">Dashboard</Link></Button>
+                                            <Button color="inherit"><Link className="link" color="inherit" to="/userdash">Users</Link></Button>
                                         </>
                                         :
                                         <></>
@@ -47,14 +50,14 @@ function Navbar(props: INavbarProps) {
                             </>
                             :
                             <>
-                                <Button color="inherit"><Link style={{ textDecoration: 'none', color: 'white' }} color="inherit" to="/login">Login</Link></Button>
-                                <Button color="inherit"><Link style={{ textDecoration: 'none', color: 'white' }} color="inherit" to="/register">Register</Link></Button>
+                                <Button color="inherit"><Link className="link" color="inherit" to="/login">Login</Link></Button>
+                                <Button color="inherit"><Link className="link" color="inherit" to="/register">Register</Link></Button>
                             </>
                     }
                 </Toolbar>
             </AppBar>
         </Box>
-    ); // TO DO: decouple CSS for Link
+    );
 }
 
 export default Navbar;
