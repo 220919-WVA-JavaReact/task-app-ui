@@ -37,7 +37,9 @@ function Userdash(props: IUserdashProps) {
         try {
             let res = await fetch('http://localhost:8080/users', {
                 method: 'GET',
-                // credentials: 'include'
+                headers: {
+                    'Authorization': `${sessionStorage.getItem('token')}`
+                }
             }); // returns a promise of the response, await lets the promise resolve before we try to use it
 
             if (res.status != 200) {

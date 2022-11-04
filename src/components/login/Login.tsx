@@ -67,6 +67,10 @@ function Login(props: ILoginProps) {
                 });
 
                 if (response.status == 200) {
+                    let token = response.headers.get('Authorization');
+                    if(token){
+                        sessionStorage.setItem('token', token);
+                    }
                     props.setCurrentUser(await response.json());
                 } else {
                     setErrorMessage('Could not validate the provided credentials');
