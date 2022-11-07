@@ -11,9 +11,7 @@ interface INavbarProps {
 function Navbar(props: INavbarProps) {
 
     function logout() {
-        console.log('logout invoked!');
-        // fetch request to invalidate session
-
+        sessionStorage.clear();
         props.setCurrentUser(undefined);
     }
 
@@ -46,6 +44,7 @@ function Navbar(props: INavbarProps) {
                                         :
                                         <></>
                                 }
+                                <Button color="inherit"><Link className="link" color="inherit" to="/profile">Profile</Link></Button>
                                 <Button color="inherit" onClick={logout}>Logout</Button>
                             </>
                             :

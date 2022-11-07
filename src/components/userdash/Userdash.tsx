@@ -3,7 +3,7 @@ import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { User } from "../../models/user";
-import ErrorMessage from "../errorMessage/ErrorMessage";
+import Message from "../message/Message";
 import Userdisplay from "../user/Userdisplay";
 
 interface IUserdashProps {
@@ -88,7 +88,7 @@ function Userdash(props: IUserdashProps) {
                                 </div>
                             </>
                             :
-                            <ErrorMessage message={message} />
+                            <Message message={message} severity="error"/>
                     }
                 </Box>
             </>

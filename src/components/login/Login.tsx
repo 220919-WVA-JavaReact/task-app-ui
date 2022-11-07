@@ -1,7 +1,7 @@
 import { SyntheticEvent, useState } from "react";
 import { User } from "../../models/user";
 import { Link, Navigate } from 'react-router-dom';
-import ErrorMessage from "../errorMessage/ErrorMessage";
+import Message from "../message/Message";
 import { Avatar, Box, Button, Checkbox, Container, createTheme, CssBaseline, FormControlLabel, Grid, TextField, ThemeProvider, Typography } from "@mui/material";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
@@ -34,7 +34,7 @@ function Login(props: ILoginProps) {
     // destructuring assignment sets username = first element of useState arr and setUsername = second element of useState arr
     const [username, setUsername] = useState(''); // initial value
     const [password, setPassword] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
+    const [message, setMessage] = useState('');
 
 
     let updateUsername = (e: SyntheticEvent) => {
@@ -53,9 +53,9 @@ function Login(props: ILoginProps) {
         // console.log(`Username is: ${username}, password is ${password}`);
 
         if (!username || !password) {
-            setErrorMessage('You must have valid username and password.');
+            setMessage('You must have valid username and password.');
         } else {
-            setErrorMessage('');
+            setMessage('');
             try {
                 let response = await fetch('http://localhost:8080/auth', {
                     method: 'POST',
@@ -73,10 +73,10 @@ function Login(props: ILoginProps) {
                     }
                     props.setCurrentUser(await response.json());
                 } else {
-                    setErrorMessage('Could not validate the provided credentials');
+                    setMessage('Could not validate the provided credentials');
                 }
             } catch (err) {
-                setErrorMessage('Unable to communicate with the API.');
+                setMessage('Unable to communicate with the API.');
             }
         }
     }
@@ -145,8 +145,8 @@ function Login(props: ILoginProps) {
                             </Box>
                         </Box>
                         {
-                            errorMessage ?
-                                <ErrorMessage message={errorMessage} />
+                            message ?
+                                <Message message={message} severity="error" />
                                 :
                                 <></>
                         }
