@@ -49,7 +49,7 @@ function Login(props: ILoginProps) {
         } else {
             setMessage('');
             try {
-                let response = await fetch('http://localhost:8080/auth', {
+                let response = await fetch('http://ec2-44-202-4-207.compute-1.amazonaws.com:8080/auth', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

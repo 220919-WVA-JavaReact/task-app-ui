@@ -50,7 +50,7 @@ function Register(props: IRegisterProps) {
             if(password !== password2){
                 setMessage('Passwords do not match.');
             }else {
-                let response = await fetch('http://localhost:8080/users',{
+                let response = await fetch('http://ec2-44-202-4-207.compute-1.amazonaws.com:8080/users',{
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
