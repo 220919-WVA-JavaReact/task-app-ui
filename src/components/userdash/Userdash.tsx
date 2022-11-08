@@ -35,7 +35,7 @@ function Userdash(props: IUserdashProps) {
 
     async function fetchUsers() {
         try {
-            let res = await fetch('http://ec2-44-202-4-207.compute-1.amazonaws.com:8080/users', {
+            let res = await fetch('http://taskappboot-env.eba-yv434qcc.us-east-1.elasticbeanstalk.com/users', {
                 method: 'GET',
                 headers: {
                     'Authorization': `${sessionStorage.getItem('token')}`
