@@ -26,10 +26,6 @@ const theme = createTheme();
 
 function Login(props: ILoginProps) {
 
-    // let username = '';
-    // let password = '';
-    // let errorMessage ='Hello';
-
     // Destructuring assignment
     // destructuring assignment sets username = first element of useState arr and setUsername = second element of useState arr
     const [username, setUsername] = useState(''); // initial value
@@ -38,19 +34,15 @@ function Login(props: ILoginProps) {
 
 
     let updateUsername = (e: SyntheticEvent) => {
-        // username = (e.target as HTMLInputElement).value;
         setUsername((e.target as HTMLInputElement).value);
-        // console.log(`Username is ${username}`);
     }
 
     let updatePassword = (e: SyntheticEvent) => {
         setPassword((e.target as HTMLInputElement).value);
-        // console.log(`Password is ${password}`);
     }
 
     // SyntheticEvents are wrapper around DOM event
     let login = async (e: SyntheticEvent) => {
-        // console.log(`Username is: ${username}, password is ${password}`);
 
         if (!username || !password) {
             setMessage('You must have valid username and password.');
@@ -62,7 +54,6 @@ function Login(props: ILoginProps) {
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    // credentials: 'include', // property to work with Java HTTP Sessions
                     body: JSON.stringify({ username, password })
                 });
 
