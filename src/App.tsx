@@ -8,6 +8,7 @@ import { User } from './models/user';
 import Navbar from './components/nav/Navbar';
 import Register from './components/register/Register';
 import Userdash from './components/userdash/Userdash';
+import Profile from './components/profile/Profile';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/login" element={<Login currentUser={authUser} setCurrentUser={setAuthUser} />} />
         <Route path="/dashboard" element={<Dashboard currentUser={authUser} />} />
         <Route path="/register" element={<Register currentUser={authUser} />} />
+        <Route path="/profile" element={<Profile currentUser={authUser} setCurrentUser={setAuthUser} />} />
         <Route path="/userdash" element={<Userdash currentUser={authUser} />} />
       </Routes>
     </BrowserRouter>
