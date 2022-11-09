@@ -49,7 +49,7 @@ function Login(props: ILoginProps) {
         } else {
             setMessage('');
             try {
-                let response = await fetch(`${process.env.REACT_APP_API_URL}/auth`, {
+                let response = await fetch('http://taskappboot-env.eba-yv434qcc.us-east-1.elasticbeanstalk.com/auth', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
