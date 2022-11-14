@@ -11,17 +11,6 @@ interface ILoginProps {
     setCurrentUser: (nextUser: User) => void
 }
 
-function Copyright(props: any) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            220919-Java/React{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
-
 const theme = createTheme();
 
 function Login(props: ILoginProps) {
@@ -73,10 +62,9 @@ function Login(props: ILoginProps) {
     }
 
     return (
-        props.currentUser ? // condition to be evaluated, ie: if(user)
-            // <p> Welcome {props.currentUser.username}! </p> // if true
+        props.currentUser ? 
             <Navigate to="/dashboard" />
-            : // else
+            :
             <>
                 <ThemeProvider theme={theme}>
                     <Container component="main" maxWidth="xs">
@@ -141,18 +129,8 @@ function Login(props: ILoginProps) {
                                 :
                                 <></>
                         }
-                        <Copyright sx={{ mt: 8, mb: 4 }} />
                     </Container>
                 </ThemeProvider>
-                {/* <h4>Log into Task App</h4>
-                <div id="login-form">
-                    <input type="text" id="login-username" placeholder="Enter your username" onChange={updateUsername} />
-                    <br /><br />
-                    <input type="password" id="login-password" placeholder="Enter your password" onChange={updatePassword} />
-                    <br /><br />
-                    <button id="login-button" onClick={login}>Login</button>
-                </div> */}
-
             </>
     );
 }
