@@ -17,9 +17,8 @@ const columns: GridColDef[] = [
 
 function UserContainer(props: IUserContainerProps) {
 
-    const [users, setUsers] = useState<User[]>([] as User[]); // <User[]> generic to define type of 'users' variable
+    const [users, setUsers] = useState<User[]>([] as User[]);
     const [message, setErrorMessage] = useState('');
-    // default value to be an empty array as an empty user array
 
 
     // Higher order function: function that takes function(s) as parameter(s) or return a function
@@ -27,7 +26,6 @@ function UserContainer(props: IUserContainerProps) {
     useEffect(() => {
         fetchUsers();
         return function () {
-            // console.log('Use effect cleanup (unmounting component)');
         };
     }, []); // with one argument useEffect hook triggers on state change, if a second arg is provided, effect will only activate if the values in the list change. 
 

@@ -1,6 +1,6 @@
-import { Button, Card, CardContent, CardMedia, createTheme, Grid, Typography } from "@mui/material";
+import { Box, Button, createTheme, Grid, Typography } from "@mui/material";
 import { Container } from "@mui/system";
-import { Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { User } from "../models/user";
 import TaskCard from "./TaskCard";
 
@@ -31,48 +31,51 @@ function Dashboard(props: IDashboard) {
   },];
 
   return (
-    props.currentUser ?
-      <main>
-        <div>
-          <Container maxWidth="sm" sx={{
-            bgcolor: 'background.paper',
-            padding: theme.spacing(8, 0, 6)
-          }}>
-            <Typography variant="h2" align="center" color="textPrimary" gutterBottom>
-              Task Application
-            </Typography>
-            <Typography variant="h5" align="center" color="textSecondary" paragraph>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Convallis aenean et tortor at risus viverra.
-            </Typography>
-            <div>
-              <Grid container spacing={3} justifyContent="center" sx={{
-                pt: 1
-              }}>
-                <Grid item>
-                  <Button variant="contained" color="primary">
-                    Learn more
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button variant="outlined" color="primary">
-                    Join us today
-                  </Button>
-                </Grid>
+    <main>
+      <Box sx={{
+        boxShadow: 5,
+        bgcolor: '#fafafa',
+      }}>
+        <Container maxWidth="sm" sx={{   
+          padding: theme.spacing(8, 0, 6),
+
+        }}>
+          <Typography variant="h2" align="center" color="textPrimary" gutterBottom>
+            Task Application
+          </Typography>
+          <Typography variant="h5" align="center" color="textSecondary" paragraph>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Convallis aenean et tortor at risus viverra.
+          </Typography>
+          <div>
+            <Grid container spacing={3} justifyContent="center" sx={{
+              pt: 1
+            }}>
+              <Grid item>
+                <Button variant="contained" color="primary">
+                  Learn more
+                </Button>
               </Grid>
-            </div>
-          </Container>
-        </div>
-        <Container maxWidth="md">
-          <Grid container spacing={6}>
-            {cards.map(card =>
-              <Grid item xs={12} sm={6} md={4}>
-                <TaskCard key={card.id} {...card} />
-              </Grid>)}
-          </Grid>
+              <Grid item>
+                <Button variant="outlined" color="primary">
+                  <Link to="/register" style={{textDecoration: 'none'}}>Join us today</Link>
+                </Button>
+              </Grid>
+            </Grid>
+          </div>
         </Container>
-      </main>
-      :
-      <Navigate to="/login" />
+      </Box>
+      <Container maxWidth="md">
+        <Typography variant="h4" color="textPrimary" gutterBottom sx={{ pt: 2 }}>
+          Featured tasks:
+        </Typography>
+        <Grid container spacing={6}>
+          {cards.map(card =>
+            <Grid item xs={12} sm={6} md={4}>
+              <TaskCard key={card.id} {...card} />
+            </Grid>)}
+        </Grid>
+      </Container>
+    </main>
   );
 }
 export default Dashboard;
