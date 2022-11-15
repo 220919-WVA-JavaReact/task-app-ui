@@ -3,6 +3,7 @@ import { Avatar, Box, Button, Container, Grid, TextField, Typography } from "@mu
 import { SyntheticEvent, useState } from "react";
 import { Link, Navigate } from 'react-router-dom';
 import { User } from "../models/user";
+import { authenticate } from '../remote/services/auth-service';
 import Message from "./Message";
 
 
@@ -33,20 +34,16 @@ function Login(props: ILoginProps) {
         } else {
             setMessage('');
             try {
-                let response = await fetch(`${process.env.REACT_APP_API_URL}/auth`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ username, password })
-                });
+
+                let response = await authenticate({ username, password });
 
                 if (response.status == 200) {
-                    let token = response.headers.get('Authorization');
+                    // axios recognizes the headers as lowercase
+                    let token = response.headers['authorization'];
                     if (token) {
                         sessionStorage.setItem('token', token);
                     }
-                    props.setCurrentUser(await response.json());
+                    props.setCurrentUser(response.data);
                 } else {
                     setMessage('Could not validate the provided credentials');
                 }

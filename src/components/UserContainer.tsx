@@ -3,6 +3,7 @@ import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { User } from "../models/user";
+import { getUsers } from "../remote/services/user-service";
 import Message from "./Message";
 
 interface IUserContainerProps {
@@ -31,17 +32,12 @@ function UserContainer(props: IUserContainerProps) {
 
     async function fetchUsers() {
         try {
-            let res = await fetch(`${process.env.REACT_APP_API_URL}/users`, {
-                method: 'GET',
-                headers: {
-                    'Authorization': `${sessionStorage.getItem('token')}`
-                }
-            }); // returns a promise of the response, await lets the promise resolve before we try to use it
+            let res = await getUsers();
 
             if (res.status !== 200) {
                 setErrorMessage('Could not retrieve users.');
             } else {
-                setUsers(await res.json());
+                setUsers(res.data);
             }
         } catch (err) {
             setErrorMessage('There was an error communicating with the API.');

@@ -3,6 +3,7 @@ import { AlertColor, Avatar, Box, Button, Container, Grid, TextField, Typography
 import { SyntheticEvent, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { User } from "../models/user";
+import { createUser } from '../remote/services/user-service';
 import Message from "./Message";
 
 interface IRegisterProps {
@@ -37,14 +38,8 @@ function Register(props: IRegisterProps) {
             if (password !== password2) {
                 setMessage('Passwords do not match.');
             } else {
-                let response = await fetch(`${process.env.REACT_APP_API_URL}/users`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ username, password })
-                });
-
+                let response = await createUser({username, password});
+                
                 if (response.status === 201) {
                     setMessage('Register successful!');
                     setSeverity("success");
