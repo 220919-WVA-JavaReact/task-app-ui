@@ -2,9 +2,8 @@ import { Box, Typography } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { User } from "../../models/user";
-import Message from "../message/Message";
-import Userdisplay from "../user/Userdisplay";
+import { User } from "../models/user";
+import Message from "./Message";
 
 interface IUserdashProps {
     currentUser: User | undefined
@@ -26,7 +25,6 @@ function Userdash(props: IUserdashProps) {
     // Higher order function: function that takes function(s) as parameter(s) or return a function
     // Similar to componentDidMount and componentDidUpdate:
     useEffect(() => {
-        // console.log('Use effect triggered.');
         fetchUsers();
         return function () {
             // console.log('Use effect cleanup (unmounting component)');
@@ -42,7 +40,7 @@ function Userdash(props: IUserdashProps) {
                 }
             }); // returns a promise of the response, await lets the promise resolve before we try to use it
 
-            if (res.status != 200) {
+            if (res.status !== 200) {
                 setErrorMessage('Could not retrieve users.');
             } else {
                 setUsers(await res.json());
@@ -55,12 +53,13 @@ function Userdash(props: IUserdashProps) {
 
     return (
         // only accessible for admin users
-        props.currentUser?.role == "ADMIN" ?
+        props.currentUser?.role === "ADMIN" ?
             <>
                 <Box sx={{
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
+                    my: 1/2
                 }}>
 
                     {

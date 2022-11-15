@@ -1,4 +1,4 @@
-import { Alert, AlertColor, Box, Stack } from "@mui/material";
+import { Alert, AlertColor, Box } from "@mui/material";
 
 interface IMessageProps {
     message: string,
@@ -9,11 +9,11 @@ function Message(props: IMessageProps) {
 
     return (
         <Box sx={{
-                marginTop: 3,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-            }}>
+            marginTop: 3,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+        }}>
             <Alert sx={{ width: '100%' }} severity={props.severity}>{props.message}</Alert>
         </Box>
     );
