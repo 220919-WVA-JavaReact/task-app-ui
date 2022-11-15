@@ -5,7 +5,7 @@ import { Navigate } from "react-router-dom";
 import { User } from "../models/user";
 import Message from "./Message";
 
-interface IUserdashProps {
+interface IUserContainerProps {
     currentUser: User | undefined
 }
 
@@ -15,7 +15,7 @@ const columns: GridColDef[] = [
     { field: 'role', headerName: 'Role', width: 200 }
 ];
 
-function Userdash(props: IUserdashProps) {
+function UserContainer(props: IUserContainerProps) {
 
     const [users, setUsers] = useState<User[]>([] as User[]); // <User[]> generic to define type of 'users' variable
     const [message, setErrorMessage] = useState('');
@@ -59,24 +59,13 @@ function Userdash(props: IUserdashProps) {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    my: 1/2
+                    my: 1 / 2
                 }}>
 
                     {
                         users ?
                             <>
                                 <Typography variant="h6" component="div" sx={{ flexGrow: 1, margin: 2 }}>User Registry:</Typography>
-                                {/* <table>
-                                <tr>
-                                    <th>id</th>
-                                    <th>username</th>
-                                    <th>role</th>
-                                </tr>
-                                {
-                                    // users.map( user => <Userdisplay id={user.id} username={user.username} role={user.role}/>)
-                                    users.map(user => <Userdisplay key={user.id} {...user} />) // key attribute helps react with rendering (preferably should be a unique identifier)
-                                }
-                            </table> */}
                                 <div style={{ height: 400, width: '75%' }}>
                                     <DataGrid
                                         rows={users}
@@ -87,7 +76,7 @@ function Userdash(props: IUserdashProps) {
                                 </div>
                             </>
                             :
-                            <Message message={message} severity="error"/>
+                            <Message message={message} severity="error" />
                     }
                 </Box>
             </>
@@ -96,4 +85,4 @@ function Userdash(props: IUserdashProps) {
     );
 }
 
-export default Userdash;
+export default UserContainer;

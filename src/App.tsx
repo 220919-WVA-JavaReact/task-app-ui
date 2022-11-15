@@ -8,7 +8,7 @@ import Footer from './components/Footer';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
 import Register from './components/Register';
-import Userdash from './components/Userdash';
+import UserContainer from './components/UserContainer';
 import { User } from './models/user';
 
 const theme = createTheme();
@@ -36,7 +36,7 @@ function App() {
               <Route path="/login" element={<Login currentUser={authUser} setCurrentUser={setAuthUser} />} />
               <Route path="/dashboard" element={<Dashboard currentUser={authUser} />} />
               <Route path="/register" element={<Register currentUser={authUser} />} />
-              <Route path="/userdash" element={<Userdash currentUser={authUser} />} />
+              <Route path="/userdash" element={<UserContainer currentUser={authUser} />} />
             </Routes>
           </Box>
           <Footer />

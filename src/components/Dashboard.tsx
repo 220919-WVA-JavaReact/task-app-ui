@@ -2,6 +2,7 @@ import { Button, Card, CardContent, CardMedia, createTheme, Grid, Typography } f
 import { Container } from "@mui/system";
 import { Navigate } from "react-router-dom";
 import { User } from "../models/user";
+import TaskCard from "./TaskCard";
 
 interface IDashboard {
   currentUser: User | undefined
@@ -10,6 +11,24 @@ interface IDashboard {
 const theme = createTheme();
 
 function Dashboard(props: IDashboard) {
+
+  const cards = [{
+    id: 1,
+    title: 'Washing the dishes',
+    priority: 'URGENT',
+    assignedUser: 'Mark'
+  }, {
+    id: 2,
+    title: 'Making the bed',
+    priority: 'URGENT',
+    assignedUser: 'John'
+  },
+  {
+    id: 3,
+    title: 'Studying for QC',
+    priority: 'URGENT',
+    assignedUser: 'Sidney'
+  },];
 
   return (
     props.currentUser ?
@@ -31,12 +50,12 @@ function Dashboard(props: IDashboard) {
               }}>
                 <Grid item>
                   <Button variant="contained" color="primary">
-                    Main button
+                    Learn more
                   </Button>
                 </Grid>
                 <Grid item>
                   <Button variant="outlined" color="primary">
-                    Secondary button
+                    Join us today
                   </Button>
                 </Grid>
               </Grid>
@@ -45,65 +64,10 @@ function Dashboard(props: IDashboard) {
         </div>
         <Container maxWidth="md">
           <Grid container spacing={6}>
-            <Grid item xs={12} sm={6} md={4}>
-              <Card
-                sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-              >
-                <CardMedia
-                  component="img"
-                  image="https://source.unsplash.com/random"
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5">
-                    Urgent task: 1
-                  </Typography>
-                  <Typography gutterBottom paragraph>
-                    Card Content, task description.
-                  </Typography>
-                  <Typography align="right" sx={{
-                    pr: 4
-                  }}>
-                    - Mark
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <Card
-                sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-              >
-                <CardMedia
-                  component="img"
-                  image="https://source.unsplash.com/random"
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5">
-                    Heading
-                  </Typography>
-                  <Typography>
-                    Card Content, task description.
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <Card
-                sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-              >
-                <CardMedia
-                  component="img"
-                  image="https://source.unsplash.com/random"
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5">
-                    Heading
-                  </Typography>
-                  <Typography>
-                    Card Content, task description.
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
+            {cards.map(card =>
+              <Grid item xs={12} sm={6} md={4}>
+                <TaskCard key={card.id} {...card} />
+              </Grid>)}
           </Grid>
         </Container>
       </main>
