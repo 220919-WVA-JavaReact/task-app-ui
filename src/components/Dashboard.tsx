@@ -70,8 +70,8 @@ function Dashboard(props: IDashboard) {
         </Typography>
         <Grid container spacing={6}>
           {cards.map(card =>
-            <Grid item xs={12} sm={6} md={4}>
-              <TaskCard key={card.id} {...card} />
+            <Grid key={card.id} item xs={12} sm={6} md={4}>
+              <TaskCard {...card} />
             </Grid>)}
         </Grid>
       </Container>

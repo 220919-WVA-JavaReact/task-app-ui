@@ -37,7 +37,7 @@ function Login(props: ILoginProps) {
 
                 let response = await authenticate({ username, password });
 
-                if (response.status == 200) {
+                if (response.status === 200) {
                     // axios recognizes the headers as lowercase
                     let token = response.headers['authorization'];
                     if (token) {
