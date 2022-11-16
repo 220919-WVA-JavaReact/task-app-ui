@@ -1,4 +1,4 @@
-import axios, { Axios } from 'axios';
+import axios from 'axios';
 
 export const authAppClient = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
