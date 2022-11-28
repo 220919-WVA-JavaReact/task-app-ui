@@ -13,9 +13,9 @@ export const authAppClient = axios.create({
 // Request interceptor allows us to set the Authorization header for each request
 authAppClient.interceptors.request.use(
     (request) => {
-        if(request.headers){
+        if (request.headers) {
             request.headers['Authorization'] = `${sessionStorage.getItem('token')}`;
         }
-          return request;
-      }
-  );
+        return request;
+    }
+);

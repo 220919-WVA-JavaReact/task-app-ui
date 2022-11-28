@@ -36,7 +36,7 @@ function Dashboard(props: IDashboard) {
         boxShadow: 5,
         bgcolor: '#fafafa',
       }}>
-        <Container maxWidth="sm" sx={{   
+        <Container maxWidth="sm" sx={{
           padding: theme.spacing(8, 0, 6),
 
         }}>
@@ -57,7 +57,7 @@ function Dashboard(props: IDashboard) {
               </Grid>
               <Grid item>
                 <Button variant="outlined" color="primary">
-                  <Link to="/register" style={{textDecoration: 'none'}}>Join us today</Link>
+                  <Link to="/register" style={{ textDecoration: 'none' }}>Join us today</Link>
                 </Button>
               </Grid>
             </Grid>

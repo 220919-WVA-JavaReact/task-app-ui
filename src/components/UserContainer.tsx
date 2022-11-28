@@ -1,23 +1,14 @@
-import { Alert, AlertColor, Box, FormControl, InputLabel, MenuItem, Paper, Select, SelectChangeEvent, Snackbar, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { SyntheticEvent, useEffect, useState } from "react";
+import { AlertColor, Box, FormControl, InputLabel, MenuItem, Paper, Select, SelectChangeEvent, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { User } from "../models/user";
 import { UserDetails } from "../models/user-details";
 import { assignManager, getManagers, getUsers } from "../remote/services/user-service";
-import Message from "./Message";
 import SnackbarNotification from "./SnackbarNotification";
 
 interface IUserContainerProps {
     currentUser: User | undefined
 }
-
-const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 150 },
-    { field: 'username', headerName: 'Username', width: 200 },
-    { field: 'role', headerName: 'Role', width: 200 },
-    { field: 'managerUsername', headerName: 'Manager', width: 200 }
-];
 
 function UserContainer(props: IUserContainerProps) {
 
@@ -27,15 +18,12 @@ function UserContainer(props: IUserContainerProps) {
     const [severity, setSeverity] = useState<AlertColor>('error');
     const [open, setOpen] = useState(false);
 
-
-    // Higher order function: function that takes function(s) as parameter(s) or return a function
-    // Similar to componentDidMount and componentDidUpdate:
     useEffect(() => {
         fetchManagers();
         fetchUsers();
         return function () {
         };
-    }, []); // with one argument useEffect hook triggers on state change, if a second arg is provided, effect will only activate if the values in the list change. 
+    }, []);
 
     async function fetchUsers() {
         try {
@@ -95,7 +83,6 @@ function UserContainer(props: IUserContainerProps) {
     };
 
     return (
-        // only accessible for admin users
         props.currentUser?.role === "ADMIN" ?
             <>
                 <Box sx={{

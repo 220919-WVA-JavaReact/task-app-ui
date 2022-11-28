@@ -38,8 +38,8 @@ function Register(props: IRegisterProps) {
             if (password !== password2) {
                 setMessage('Passwords do not match.');
             } else {
-                let response = await createUser({username, password});
-                
+                let response = await createUser({ username, password });
+
                 if (response.status === 201) {
                     setMessage('Register successful!');
                     setSeverity("success");

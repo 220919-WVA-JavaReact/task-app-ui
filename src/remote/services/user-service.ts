@@ -15,10 +15,10 @@ export const getUsers = async () => {
     return await authAppClient.get<UserDetails[]>('/users');
 }
 
-export const getManagers = async() => {
+export const getManagers = async () => {
     return await authAppClient.get<UserDetails[]>('/users?role=MANAGER');
 }
 
-export const assignManager = async(userId: string, managerId: string) => {
+export const assignManager = async (userId: string, managerId: string) => {
     return await authAppClient.patch<UserDetails>(`/users/${userId}/manager/${managerId}`);
 }

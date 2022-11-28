@@ -8,7 +8,7 @@ interface ISnackbarNotification {
 
 export default function SnackbarNotification(props: ISnackbarNotification) {
     return (
-        <Snackbar open={props.open} anchorOrigin={{vertical: "bottom", horizontal: "right"}}>
+        <Snackbar open={props.open} anchorOrigin={{ vertical: "bottom", horizontal: "right" }}>
             <Alert severity={props.severity} sx={{ width: '100%' }}>
                 {props.message}
             </Alert>
